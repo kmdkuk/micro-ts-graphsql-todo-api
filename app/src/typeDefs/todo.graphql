@@ -1,0 +1,5 @@
+type Todo {
+  id: Int
+  description: String
+  isDone: Boolean
+}
