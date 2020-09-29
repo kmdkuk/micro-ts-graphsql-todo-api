@@ -1,0 +1,36 @@
+{
+  "name": "micro-ts-graphsql-todo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro ./build/index.js",
+    "dev": "node -r ts-node/register node_modules/.bin/micro-dev ./src/index.ts",
+    "build": "tsc -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmdkuk/micro-ts-graphsql-todo-api.git"
+  },
+  "author": "kmdkuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kmdkuk/micro-ts-graphsql-todo-api/issues"
+  },
+  "homepage": "https://github.com/kmdkuk/micro-ts-graphsql-todo-api#readme",
+  "dependencies": {
+    "apollo-server-micro": "^2.18.1",
+    "graphql": "^15.3.0",
+    "graphql-tools": "^6.2.3",
+    "micro": "^9.3.4",
+    "microrouter": "^3.1.3"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/micro": "^7.3.3",
+    "@types/microrouter": "^3.1.1",
+    "micro-dev": "^3.0.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
