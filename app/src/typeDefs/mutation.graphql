@@ -1,0 +1,5 @@
+# import Todo from "todo.graphql"
+
+type Mutation {
+  createTodo(description: String): Todo
+}

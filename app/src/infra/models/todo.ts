@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import ITodoDocument from "./ITodoDocument";
 
 const schema = new mongoose.Schema({
   id: {
@@ -21,6 +22,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-const Todo = mongoose.model("Todo", schema);
+const TodoDb = mongoose.model<ITodoDocument>("Todo", schema);
 
-export default Todo;
+export default TodoDb;

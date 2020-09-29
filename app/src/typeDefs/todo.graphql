@@ -1,5 +1,5 @@
 type Todo {
-  id: Int
+  id: String
   description: String
   isDone: Boolean
 }

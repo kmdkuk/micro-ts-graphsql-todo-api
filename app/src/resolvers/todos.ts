@@ -14,3 +14,14 @@ export const todos = async (
   }
   return todoRepo.gets();
 };
+
+export const createTodo = async (
+  _: any,
+  description: String,
+  { dbConn }: { dbConn: mongoose.Connection }
+): Promise<Todo> => {
+  if (todoRepo == null) {
+    todoRepo = new TodoRepository(dbConn);
+  }
+  return todoRepo.create(description);
+};
