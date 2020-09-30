@@ -12,11 +12,21 @@ export class TodoRepository {
   }
 
   async gets(): Promise<Todo[]> {
-    return mockTodos;
+    return TodoDb.find().then((todos: ITodoDocument[]) => {
+      return todos.map(
+        (item: ITodoDocument): Todo => {
+          return {
+            id: item.id,
+            description: item.description,
+            isDone: item.isDone,
+          };
+        }
+      );
+    });
   }
 
   async create(description: String): Promise<Todo> {
-    console.log("todoRepo.create" + description);
+    console.log("todoRepo.create " + description);
     const todo = new TodoDb({
       description: description,
       isDone: false,
