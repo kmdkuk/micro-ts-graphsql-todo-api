@@ -1,17 +1,14 @@
 import { ApolloServer } from "apollo-server-micro";
 import { send } from "micro";
 import { get, post, router } from "microrouter";
-import { getConnection } from "./infra/db";
+import { connect } from "./infra/db";
 
 import { schema } from "./schema";
 
 const apolloServer = new ApolloServer({
   schema,
-  context: async () => {
-    const dbConn = await getConnection();
-    return { dbConn };
-  },
 });
+connect();
 const graphqlPath = "/data";
 const graphqlHandler = apolloServer.createHandler({ path: graphqlPath });
 

@@ -17,11 +17,11 @@ export const todos = async (
 
 export const createTodo = async (
   _: any,
-  description: String,
+  args: { description: String },
   { dbConn }: { dbConn: mongoose.Connection }
 ): Promise<Todo> => {
   if (todoRepo == null) {
     todoRepo = new TodoRepository(dbConn);
   }
-  return todoRepo.create(description);
+  return todoRepo.create(args.description);
 };

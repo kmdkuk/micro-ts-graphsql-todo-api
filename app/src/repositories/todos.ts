@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import DbTodo from "../infra/models/todo";
 import mockTodos from "../mocks/todos.json";
 import { Todo } from "../models/todo";
+import TodoDb from "../infra/models/todo";
+import ITodoDocument from "../infra/models/ITodoDocument";
 
 export class TodoRepository {
   dbConn: mongoose.Connection;
@@ -15,9 +16,14 @@ export class TodoRepository {
   }
 
   async create(description: String): Promise<Todo> {
-    const todo = await DbTodo.create({
+    console.log("todoRepo.create" + description);
+    const todo = new TodoDb({
       description: description,
       isDone: false,
+    });
+    todo.save((err: any, todo: ITodoDocument) => {
+      if (err) return console.error("error: " + err);
+      console.log("todo: " + todo);
     });
     const result: Todo = {
       id: todo.id,
