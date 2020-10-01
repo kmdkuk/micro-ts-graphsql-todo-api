@@ -3,4 +3,5 @@
 type Mutation {
   createTodo(description: String): Todo
   completeTodo(id: String): Todo
+  updateTodo(id: String, description: String): Todo
 }

@@ -25,6 +25,7 @@ export class TodoResolver {
   ): Promise<Todo> => {
     return this.todoRepo.create(args.description);
   };
+
   complete = (
     _parent: any,
     args: { id: String },
@@ -32,5 +33,14 @@ export class TodoResolver {
     _info: any
   ): Promise<Todo> => {
     return this.todoRepo.complete(args.id);
+  };
+
+  update = (
+    _parent: any,
+    args: { id: String; description: String },
+    _context: any,
+    _info: any
+  ): Promise<Todo> => {
+    return this.todoRepo.update(args);
   };
 }
