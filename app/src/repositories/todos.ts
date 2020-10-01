@@ -4,12 +4,6 @@ import TodoDb from "../infra/models/todo";
 import ITodoDocument from "../infra/models/ITodoDocument";
 
 export class TodoRepository {
-  dbConn: mongoose.Connection;
-
-  constructor(dbConn: mongoose.Connection) {
-    this.dbConn = dbConn;
-  }
-
   async gets(): Promise<Todo[]> {
     return TodoDb.find().then((todos: ITodoDocument[]) => {
       return todos.map(

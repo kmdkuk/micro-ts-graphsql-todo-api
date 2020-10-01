@@ -2,25 +2,28 @@ import mongoose from "mongoose";
 import { Todo } from "../models/todo";
 import { TodoRepository } from "../repositories/todos";
 
-let todoRepo: TodoRepository | null = null;
-export const todos = async (
-  _parent: any,
-  _args: any,
-  { dbConn }: { dbConn: mongoose.Connection }
-): Promise<Todo[]> => {
-  if (todoRepo == null) {
-    todoRepo = new TodoRepository(dbConn);
-  }
-  return todoRepo.gets();
-};
+export class TodoResolver {
+  todoRepo: TodoRepository;
 
-export const createTodo = async (
-  _: any,
-  args: { description: String },
-  { dbConn }: { dbConn: mongoose.Connection }
-): Promise<Todo> => {
-  if (todoRepo == null) {
-    todoRepo = new TodoRepository(dbConn);
+  constructor(todoRepo: TodoRepository) {
+    this.todoRepo = todoRepo;
   }
-  return todoRepo.create(args.description);
-};
+
+  getAll = (
+    _parent: any,
+    _args: any,
+    _context: any,
+    _info: any
+  ): Promise<Todo[]> => {
+    return this.todoRepo.gets();
+  };
+
+  create = (
+    _parent: any,
+    args: { description: String },
+    _context: any,
+    _info: any
+  ): Promise<Todo> => {
+    return this.todoRepo.create(args.description);
+  };
+}
