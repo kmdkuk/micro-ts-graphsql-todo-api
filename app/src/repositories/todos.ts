@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import mockTodos from "../mocks/todos.json";
 import { Todo } from "../models/todo";
 import TodoDb from "../infra/models/todo";
 import ITodoDocument from "../infra/models/ITodoDocument";

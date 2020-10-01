@@ -1,7 +1,5 @@
-# import Movie from "movie.graphql"
 # import Todo from "todo.graphql"
 
 type Query {
-  movies: [Movie]
   todos: [Todo]
 }
