@@ -9,5 +9,6 @@ export const resolvers = {
   },
   Mutation: {
     createTodo: todoResolver.create,
+    completeTodo: todoResolver.complete,
   },
 };

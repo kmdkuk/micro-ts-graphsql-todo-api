@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { Todo } from "../models/todo";
 import TodoDb from "../infra/models/todo";
 import ITodoDocument from "../infra/models/ITodoDocument";
@@ -24,7 +23,29 @@ export class TodoRepository {
       description: description,
       isDone: false,
     });
-    todo.save((err: any, todo: ITodoDocument) => {
+    await todo.save((err: any, todo: ITodoDocument) => {
+      if (err) return console.error("error: " + err);
+      console.log("todo: " + todo);
+    });
+    const result: Todo = {
+      id: todo.id,
+      description: todo.description,
+      isDone: todo.isDone,
+    };
+    return result;
+  }
+
+  async complete(id: String): Promise<Todo> {
+    const todo = await TodoDb.findById(id);
+    if (!todo) {
+      return {
+        id: "",
+        description: "not found todo",
+        isDone: false,
+      };
+    }
+    todo.isDone = true;
+    await todo.save((err: any, todo: ITodoDocument) => {
       if (err) return console.error("error: " + err);
       console.log("todo: " + todo);
     });

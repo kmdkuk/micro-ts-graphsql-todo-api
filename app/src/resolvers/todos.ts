@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { Todo } from "../models/todo";
 import { TodoRepository } from "../repositories/todos";
 
@@ -25,5 +24,13 @@ export class TodoResolver {
     _info: any
   ): Promise<Todo> => {
     return this.todoRepo.create(args.description);
+  };
+  complete = (
+    _parent: any,
+    args: { id: String },
+    _context: any,
+    _info: any
+  ): Promise<Todo> => {
+    return this.todoRepo.complete(args.id);
   };
 }
