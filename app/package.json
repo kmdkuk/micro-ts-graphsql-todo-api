@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "micro ./build/index.js",
-    "dev": "node -r ts-node/register node_modules/.bin/micro-dev ./src/index.ts",
-    "build": "tsc -b"
+    "dev": "nodemon micro ./build/index.js",
+    "build": "tsc -b",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "@types/mongoose": "^5.7.36",
     "@types/uuid": "^8.3.0",
     "micro-dev": "^3.0.0",
+    "nodemon": "^2.0.4",
     "prettier": "^2.1.2",
     "ts-node": "^9.0.0",
     "tslint": "^6.1.3",
