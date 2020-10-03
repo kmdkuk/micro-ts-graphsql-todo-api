@@ -8,13 +8,13 @@ export class TodoResolver {
     this.todoRepo = todoRepo;
   }
 
-  getAll = (
+  get = (
     _parent: any,
-    _args: any,
+    args: { id: String; description: String; isDone: boolean },
     _context: any,
     _info: any
   ): Promise<Todo[]> => {
-    return this.todoRepo.gets();
+    return this.todoRepo.gets(args);
   };
 
   create = (

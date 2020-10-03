@@ -1,5 +1,5 @@
 # import Todo from "todo.graphql"
 
 type Query {
-  todos: [Todo]
+  todos(description: String, isDone: Boolean): [Todo]
 }

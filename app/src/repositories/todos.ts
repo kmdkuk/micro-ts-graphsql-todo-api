@@ -3,8 +3,40 @@ import TodoDb from "../infra/models/todo";
 import ITodoDocument from "../infra/models/ITodoDocument";
 
 export class TodoRepository {
-  async gets(): Promise<Todo[]> {
-    return TodoDb.find().then((todos: ITodoDocument[]) => {
+  async gets(args: {
+    id: String;
+    description: String;
+    isDone: boolean;
+  }): Promise<Todo[]> {
+    if (args.id) {
+      const todo = await TodoDb.findById(args.id);
+      if (!todo) {
+        return [
+          {
+            id: "",
+            description: "not found todo",
+            isDone: false,
+          },
+        ];
+      }
+      return [
+        {
+          id: todo.id,
+          description: todo.description,
+          isDone: todo.isDone,
+        },
+      ];
+    }
+    let todos = TodoDb.find();
+    if (args.description) {
+      todos = todos.find({
+        description: args.description,
+      });
+    }
+    if (args.isDone) {
+      todos = todos.find({ isDone: args.isDone });
+    }
+    return todos.then((todos: ITodoDocument[]) => {
       return todos.map(
         (item: ITodoDocument): Todo => {
           return {

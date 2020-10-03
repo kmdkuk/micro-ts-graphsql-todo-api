@@ -5,7 +5,7 @@ const todoResolver = new TodoResolver(new TodoRepository());
 
 export const resolvers = {
   Query: {
-    todos: todoResolver.getAll,
+    todos: todoResolver.get,
   },
   Mutation: {
     createTodo: todoResolver.create,
