@@ -1,13 +1,13 @@
 version: "3"
 services:
-  app:
+  server:
     build:
-      context: ./app
+      context: ./server
     tty: true
     environment:
       DB_PATH: "mongodb://user:password@mongo:27017/app"
     volumes:
-      - ./app:/app
+      - ./server:/app
     ports:
       - "3000:3000"
     depends_on:
